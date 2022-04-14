@@ -5,14 +5,18 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :description, :price, :category_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :description, :price, :category_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params :name, :description, :price, :category_id, :image
 
+  form do |f| # This is a formtastic form builder.
+    f.semantic_errors # shows errors on :base
+    # f.inputs          # builds an input field for every attribute
+    f.inputs do
+      f.input :category, as: :select, collection: Category.all.map { |c| [c.name, c.id] }
+      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image) : ""
+      f.input :name
+      f.input :description
+      f.input :price
+    end
+    f.actions         # adds the 'Submit' and 'Cancel' buttons
+  end
 end
