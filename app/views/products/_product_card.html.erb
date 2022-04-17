@@ -1,0 +1,11 @@
+<div class="card text-white bg-dark mb-3" style="width: 18rem;">
+  <% if product.image.present? %>
+    <%= image_tag product.image, :size => '286x300' %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title" style="color: white;"><%= product.name %></h5>
+    <p class="card-text"><%= product.description %></p>
+    <h3 class="card-text">$<%= product.price %></h3>
+    <a href="#" class="btn btn-primary" style="color: white;">Add To Cart</a>
+  </div>
+</div>

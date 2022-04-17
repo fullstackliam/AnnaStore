@@ -7,7 +7,11 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.order(:name)
-    @categories = Category.order(:name)
+    @products = Product.all
+    @categories = Category.all
+  end
+
+  def search
+    @products = Product.where(name: params[:search_term])
   end
 end
