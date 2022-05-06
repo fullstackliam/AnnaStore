@@ -1,11 +1,20 @@
 <div class="card text-white bg-dark mb-3" style="width: 18rem;">
   <% if product.image.present? %>
-    <%= image_tag product.image, :size => '286x300' %>
+    <%= image_tag product.image.variant(resize: "286x300").processed %>
   <% end %>
   <div class="card-body">
     <h5 class="card-title" style="color: white;"><%= product.name %></h5>
     <p class="card-text"><%= product.description %></p>
     <h3 class="card-text" style="color: white;">$<%= product.price %></h3>
-    <a href="#" class="btn btn-primary" style="color: white;">Add To Cart</a>
+    <% if cart.include?(product)%>
+    <%= button_to cart_path(product), method: :delete, class: 'btn btn-danger' do%>
+      Remove from cart
+    <% end %>
+    <% else%>
+    <%= form_with url: cart_add_path, method: :post do %>
+      <%= hidden_field_tag :id, product.id %>
+      <%= button_tag 'Add to Cart', class: 'btn btn-primary' %>
+      <% end%>
+    <% end %>
   </div>
 </div>

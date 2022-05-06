@@ -1,0 +1,33 @@
+<details>
+  <summary>
+    Cart
+    <% if cart.present? %>
+    | <sup><%= cart.size %></sup>
+    <% end %>
+  </summary>
+  <% if cart.present? %>
+    <ul>
+      <% cart.each do |product| %>
+        <li>
+          <%= form_with url: cart_add_path, method: :post do %>
+            <%= hidden_field_tag :id, product.id %>
+          <%= image_tag product.image, :size => '30x30' %>
+          <%= link_to product.name, 'test' %> |
+          $<%= product.price.to_f %> |
+          <% end%>
+          <%= button_to cart_path(product), method: :delete, class: 'btn btn-link',form: {style: 'display:inline-block;'} do%>
+          Remove from cart
+  <% end %>
+        </li>
+  <% end %>
+  <h4>Subtotal: $</h4>
+<% if user_signed_in? %>
+  <%= link_to "Checkout", checkout_cart_path,class: 'btn btn-success'  %>
+  <% else %>
+  <%= link_to "Login to checkout", new_user_session_path,class: 'btn btn-success' %>
+  <% end %>
+    </ul>
+<% else %>
+  <p>No items in your cart.</p>
+  <% end %>
+</details>
