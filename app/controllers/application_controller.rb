@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def init_session
+    @categories = Category.all
     session[:shopping_cart] ||= []
+    session[:quantity] ||= []
   end
 
   def cart
