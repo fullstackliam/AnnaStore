@@ -19,7 +19,7 @@ class CartController < ApplicationController
 
     #respond_to do | format |
 
-      #format.js                           #app/views/checkout/create.js.erb
-
+      #format.js
+      #app/views/checkout/create.js.erb
     #end
 end

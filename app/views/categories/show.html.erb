@@ -1,2 +1,5 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; flex: 280px; justify-content: space-around;">
+  <% @products.each do |product|%>
+    <%= render :partial => 'products/product_card', locals: { product: product}%>
+  <%end%>
+</div>
