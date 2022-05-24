@@ -22,8 +22,13 @@ class CartController < ApplicationController
   def update
 
 
-    id = params[:id].to_i
-    quantity = session[:quantity].to_i
+    product_id = params[:id].to_i
+    quantity = params[:quantity].to_i
+    session[:quantity][session[:shopping_cart].index(product_id)]
+
+    session[:quantity][session[:shopping_cart].index(id)] = quantity
+
+    redirect_back(fallback_location: root_path)
 
   end
   # For allowing stripe integration | put into create method

@@ -1,10 +1,9 @@
+
 <details>
-  <summary>
+  <summary class="nav-link">
     Cart
-    <% if cart.present? %>
-    | <sup><%= cart.size %></sup>
-    <% end %>
   </summary>
+
   <% if cart.present? %>
     <ul>
       <% cart.each do |product| %>
