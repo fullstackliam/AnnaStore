@@ -11,13 +11,14 @@
         <li>
           <%= form_with url: cart_add_path, method: :post do %>
             <%= hidden_field_tag :id, product.id %>
-          <%= image_tag product.image, :size => '30x30' %>
-          <%= link_to product.name, 'test' %> |
+            <%= image_tag product.image, :size => '30x30' %>
+            <%= link_to product.name, 'test' %> |
           $<%= product.price.to_f %> |
+          Quantity: <%= session[:quantity][session[:shopping_cart].index(product.id)]%>
           <% end%>
           <%= button_to cart_path(product), method: :delete, class: 'btn btn-link',form: {style: 'display:inline-block;'} do%>
           Remove from cart
-  <% end %>
+          <% end %>
         </li>
   <% end %>
   <h4>Subtotal: $</h4>

@@ -4,6 +4,9 @@ class CartController < ApplicationController
     puts product_id
     unless session[:shopping_cart].include?(product_id)
       session[:shopping_cart] << product_id
+
+      session[:quantity][session[:shopping_cart].index(product_id)]
+
       product = Product.find(product_id)
       redirect_back(fallback_location: root_path)
     end
@@ -11,8 +14,17 @@ class CartController < ApplicationController
 
   def destroy
     product_id = params[:id].to_i
+    session[:quantity].delete_at(session[:shopping_cart].index(product_id))
     session[:shopping_cart].delete(product_id)
     redirect_back(fallback_location: root_path)
+  end
+
+  def update
+
+
+    id = params[:id].to_i
+    quantity = session[:quantity].to_i
+
   end
   # For allowing stripe integration | put into create method
   #redirect_to @session.url, allow_other_host: true
