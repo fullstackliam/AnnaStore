@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   get 'search', to: 'products#search', as: 'search'
 
   resources :cart
-
   post "cart/add"
+  post "cart/update"
   get "cart/remove"
 
   devise_for :admin_users, ActiveAdmin::Devise.config

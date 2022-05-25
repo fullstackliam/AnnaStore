@@ -1,4 +1,6 @@
 class CartController < ApplicationController
+
+  helper_method :cart
   def add
     product_id = params[:id].to_i
     puts product_id
@@ -26,7 +28,7 @@ class CartController < ApplicationController
     quantity = params[:quantity].to_i
     session[:quantity][session[:shopping_cart].index(product_id)]
 
-    session[:quantity][session[:shopping_cart].index(id)] = quantity
+    session[:quantity][session[:shopping_cart].index(product_id)] = quantity
 
     redirect_back(fallback_location: root_path)
 
