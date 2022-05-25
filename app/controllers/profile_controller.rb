@@ -4,7 +4,10 @@ class ProfileController < ApplicationController
 
     ##@addresses = @user.billing_adresses
 
-    ##@provinces = Province.all
+    @provinces = Province.all
+
+
+
 
     ##@orders = Order.where("user_id = ?", @user)
 

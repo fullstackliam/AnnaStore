@@ -1,5 +1,5 @@
 class Province < ApplicationRecord
-  has_may :billing_adresses
+  has_many :billing_adresses
 
   validates :name, presence: true
 end
