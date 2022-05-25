@@ -33,12 +33,14 @@ class CartController < ApplicationController
     redirect_back(fallback_location: root_path)
 
   end
-  # For allowing stripe integration | put into create method
-  #redirect_to @session.url, allow_other_host: true
 
-    #respond_to do | format |
-
-      #format.js
-      #app/views/checkout/create.js.erb
-    #end
+  def sub_total
+    price = 0
+    productAtPosition = session[:quantity][session[:shopping_cart].index(product.id)]
+    cart.each do |product|
+      productAtPosition = session[:quantity][session[:shopping_cart].index(product.id)]
+      price += product.price * productAtPosition
+    end
+    session[:cart_subtotal] = price
+  end
 end
