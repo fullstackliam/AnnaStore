@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_22_222222) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_221421) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -65,16 +65,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_222222) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "billing_adresses", force: :cascade do |t|
-    t.text "street_adress"
+  create_table "billing_addresses", force: :cascade do |t|
+    t.string "street_address"
     t.string "city"
-    t.string "provice"
     t.string "country"
     t.string "postal_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "province_id", null: false
+    t.index ["province_id"], name: "index_billing_addresses_on_province_id"
+    t.index ["user_id"], name: "index_billing_addresses_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -86,6 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_222222) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.integer "accountId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -124,4 +132,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_22_222222) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "billing_addresses", "provinces"
+  add_foreign_key "billing_addresses", "users"
 end

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BillingaddressTest < ActiveSupport::TestCase
+class BillingAddressTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

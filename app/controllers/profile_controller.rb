@@ -2,7 +2,7 @@ class ProfileController < ApplicationController
   def edit
     @user = current_user
 
-    ##@addresses = @user.billing_adresses
+    @addresses = @user.billing_addresses
 
     @provinces = Province.all
 

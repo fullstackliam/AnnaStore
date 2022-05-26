@@ -1,6 +1,8 @@
 class CartController < ApplicationController
 
   helper_method :cart
+  helper_method :sub_total
+
   def add
     product_id = params[:id].to_i
     puts product_id
