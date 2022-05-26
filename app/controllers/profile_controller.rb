@@ -1,8 +1,7 @@
 class ProfileController < ApplicationController
+  helper_method :getUserBillingAddress
   def edit
     @user = current_user
-
-    @addresses = @user.billing_addresses
 
     @provinces = Province.all
 
@@ -13,4 +12,6 @@ class ProfileController < ApplicationController
 
     ##@order_details = OrderDetail.where("user_id = ?", @user)
   end
+
+
 end

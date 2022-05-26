@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'search', to: 'products#search', as: 'search'
 
   resources :cart
+  resources :street_address
   post "cart/add"
   post "cart/update"
   get "cart/remove"

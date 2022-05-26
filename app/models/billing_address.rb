@@ -3,7 +3,5 @@ class BillingAddress < ApplicationRecord
   belongs_to :province
 
 
-  validates :street_address, :city, :first_name, :last_name, :country, :postal_code, present: true
-
-
+  validates :street_address, :city, :first_name, :last_name, :country, :postal_code, presence: true
 end

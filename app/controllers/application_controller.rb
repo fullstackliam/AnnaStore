@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_addresses
-    @addresses = current_user.billing_addresses
+    @billing_addresses = BillingAddress.where("user_id" , @user)
   end
 
   def cart
