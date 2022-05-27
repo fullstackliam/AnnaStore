@@ -49,6 +49,8 @@ class CheckoutController < ApplicationController
 
   def payment
 
+    order = Order.new
+
 
 
 

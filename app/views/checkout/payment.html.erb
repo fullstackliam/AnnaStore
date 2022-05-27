@@ -31,9 +31,15 @@
   <h3>Subtotal: $<%= sub_total %></h3>
   <h4>Taxes: $ <%= (taxRate * sub_total).round(2)%></h4>
   <br/>
-  <h2>Total: $<%= (sub_total * (1+taxRate)).round(2)%></h2>
+  <h2>Grand Total: $<%= (sub_total * (1+taxRate)).round(2)%></h2>
 
   <br/>
+
+  <% form.hidden_field :tax_rate, :value => tax_rate %>
+  <% form.hidden_field :user_id, :value => current_user.id %>
+  <% form.hidden_field :sub_total, :value => sub_total %>
+  <% form.hidden_field :tax_total, :value => (taxRate * sub_total).round(2) %>
+  <% form.hidden_field :grand_total, :value => (sub_total * (1+taxRate)).round(2)%>
   <% if current_user_addresses.count > 0%>
     <%= form.submit "Place Order",class: 'btn btn-primary' %>
   <%end%>
