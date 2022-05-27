@@ -3,3 +3,38 @@
  <%= link_to "Add an address to check out", edit_billing_address_path,class: 'btn btn-success'  %>
 <% end %>
 
+<h1>Checkout</h1>
+
+<% cart.each do |product| %>
+  <%= image_tag product.image.variant(resize: "120x160").processed, alt:product.name %>
+  <br>
+  <%= link_to product.name, '#'%>
+  <h3>$ <%= product.price %></h3>
+  <h3>Quantity: <%= session[:quantity][session[:shopping_cart].index(product.id)]%> </h3>
+  <h3>Item Total: <%= (product.price * session[:quantity][session[:shopping_cart].index(product.id)]).round(2) %></h3>
+  <br>
+  <br>
+<% end %>
+<h2>Shipping Address</h2>
+
+<div class="card" style="width: 18 rem;">
+  <p><%= mainAddress.first_name %> <%= mainAddress.last_name %> </p>
+  <p><%= mainAddress.street_address %> </p>
+  <p><%= mainAddress.city %> </p>
+  <p><%= mainAddress.province.name %> </p>
+  <p><%= mainAddress.postal_code %> </p>
+</div>
+
+<%= form_with url: checkout_receipt_path_path, method: :get do |form| %>
+  <h4>Shipping: FREE</h4>
+
+  <h3>Subtotal: $<%= sub_total %></h3>
+  <h4>Taxes: $ <%= (taxRate * sub_total).round(2)%></h4>
+  <br/>
+  <h2>Total: $<%= (sub_total * (1+taxRate)).round(2)%></h2>
+
+  <br/>
+  <% if current_user_addresses.count > 0%>
+    <%= form.submit "Place Order",class: 'btn btn-primary' %>
+  <%end%>
+<% end %>

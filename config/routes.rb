@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'products/view'
   get 'products/index'
   get "profile/edit"
+  get "checkout_receipt_path" => 'checkout#receipt'
 
   get 'search', to: 'products#search', as: 'search'
   get "new_billing_address" => "profile#new"
