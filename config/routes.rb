@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "profile/edit"
 
   get 'search', to: 'products#search', as: 'search'
+  get "new_billing_address" => "profile#new"
+  get "edit_billing_address" => "profile#edit"
 
   resources :cart
   resources :street_address
