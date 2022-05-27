@@ -1,6 +1,6 @@
 <div class="card text-white bg-dark mb-3" style="width: 18rem;">
   <% if product.image.present? %>
-    <%= image_tag product.image.variant(resize: "286x300").processed %>
+    <%= image_tag product.image.variant(resize: "286x300").processed, alt:product.name %>
   <% end %>
   <div class="card-body">
     <h5 class="card-title" style="color: white;"><%= product.name %></h5>

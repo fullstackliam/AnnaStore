@@ -10,7 +10,7 @@
         <li>
           <%= form_with url: cart_update_path, method: :post do %>
             <%= hidden_field_tag :id, product.id %>
-            <%= image_tag product.image, :size => '30x30' %>
+            <%= image_tag product.image, :size => '30x30', alt:product.name %>
             <%= link_to product.name, 'test' %> |
           $<%= product.price.to_f %> |
           Quantity: <%= select_tag :quantity, options_for_select(1..10, session[:quantity][session[:shopping_cart].index(product.id)]), onchange: "this.form.submit();"%>

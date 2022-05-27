@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get "new_billing_address" => "profile#new"
   get "edit_billing_address" => "profile#edit"
 
+  get "checkout_payment_path" => "checkout#payment"
+
   resources :cart
   resources :street_address
   post "cart/add"
