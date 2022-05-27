@@ -35,7 +35,7 @@
 
   <br/>
 
-  <% form.hidden_field :tax_rate, :value => tax_rate %>
+  <% form.hidden_field :tax_rate, :value => taxRate %>
   <% form.hidden_field :user_id, :value => current_user.id %>
   <% form.hidden_field :sub_total, :value => sub_total %>
   <% form.hidden_field :tax_total, :value => (taxRate * sub_total).round(2) %>

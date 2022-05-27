@@ -45,15 +45,32 @@ class CheckoutController < ApplicationController
     when "Yukon"
       @taxRate = 0.05
     end
+    session[:tax_rate] = @taxRate
   end
 
-  def payment
+  def receipt
+    newOrder = Order.new
+    newOrder.user_id = 2
+    newOrder.subtotal = sub_total
+    newOrder.tax = (taxRate * sub_total).round(2)
+    newOrder.grand_total = (sub_total * ((taxRate) + 1 )).round(2)
+    newOrder.billing_addresses_id = mainAddress.id
+    puts newOrder.inspect
+    newOrder.save
 
-    order = Order.new
+    cart.each do |product|
+      order_product = OrderProduct.new
+      order_product.order_id = newOrder.id
+      order_product.product_id = product.id
+      order_product.quantity = session[:quantity][session[:shopping_cart].index(product.id)]
+      order_product.user_id = current_user.id
+      puts order_product.inspect
+      order_product.save
+    end
 
-
-
-
+    session[:quantity] = []
+    session[:shopping_cart] = []
+    session[:tax_rate] = 0
 
   end
 end
